@@ -1,12 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
+int SecondLargest(vector<int>&nums){
+    int largest=INT_MIN;
+    int secondlargest=INT_MIN;
 
-vector<int> largest(vector<int>&nums){
-    sort(nums.begin(),nums.end());
-     int i=nums.size();
-     for(i=0;i<nums.size();i++){
-        cout<<nums[i];
-     }
+    for(int i=0;i<nums.size();i++){
+        if(nums[i]>largest){
+            secondlargest=largest;
+            largest=nums[i];
+
+        }else if(nums[i]>secondlargest && nums[i]!=largest){
+            secondlargest=nums[i];
+        }
+    }
+    return secondlargest;
 }
 
 int main(){
@@ -17,10 +24,7 @@ int main(){
     for( int i=0;i<n;i++){
         cin>>nums[i];
     }
-
-    vector<int> l=largest(nums);
-    for(int i=0;i<l.size();i++){
-        cout<<nums[i]<<" ";
-    }
+    cout<<SecondLargest(nums)<<" ";
+    return 0;
 
 }
